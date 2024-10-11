@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import SwitchToggle from "./Toggle/Switch";
 import { IoCloudUpload } from "react-icons/io5";
 import axios from "axios";
+import { userContext } from "./GlobalUserProvider";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [userDetails, setUserDetails] = useState<any>(null);
+  const {setGlobalUserDetails} = useContext<any>(userContext);
   const location = useLocation();
 
   useEffect(()=>{
@@ -15,8 +17,8 @@ export default function Navbar() {
       const res = await axios.get("/api/v1/userInfo");
       if(res.data.status === true){
         setUserDetails(res.data.data);
+        setGlobalUserDetails(res.data.data);
       }
-      console.log("Hii")
     }
     getUserDetails();
   }, [location.pathname])

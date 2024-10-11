@@ -5,6 +5,7 @@ import Home from "../home/Home";
 import Navbar from "../components/Navbar";
 import MainSnippets from "./snippets/MainSnippets";
 import UploadSnippets from "./UploadSnippets";
+import OneSnippet from "./SingleSnippet/OneSnippet";
 const RouterPath = () => {
   return (
     <Router>
@@ -15,6 +16,7 @@ const RouterPath = () => {
         <Route path="/" element={<Home />} />
         <Route path="/snippets" element={<MainSnippets />} />
         <Route path="/uploadSnippets" element={<UploadSnippets />} />
+        <Route path="/description/:id" element={<OneSnippet />} />
       </Routes>
     </Router>
   );

@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
+import { toast, ToastContainer } from "react-toastify";
+import axios from "axios";
+import { userContext } from "./GlobalUserProvider";
 export default function DescriptionBox({
   setDescription,
   language,
@@ -11,13 +14,24 @@ export default function DescriptionBox({
   code: string
 }) {
   const [question, setQuestion] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const {GlobalUserDetails} = useContext<any>(userContext);
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Question submitted:", question);
     console.log("Language is: ", language);
     console.log("Code is: ", code);
     setQuestion("");
+    try {
+      const id = GlobalUserDetails.id;
+      if(!id){
+        toast.error("Please login before saving your snippet");
+      }
+      const res = await axios.post("/api/v1/saveSnippet", {question, language, code, id});
+      console.log(res);
+    } catch (error: any) {
+      const errorMessage = error?.response?.data || "An unknown errror occured";
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -27,6 +41,7 @@ export default function DescriptionBox({
       transition={{ duration: 0.5 }}
       className="w-full max-w-2xl mx-auto p-6 bg-background rounded-lg"
     >
+      <ToastContainer/>
       <motion.h2
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

@@ -3,68 +3,75 @@ import { motion } from "framer-motion";
 import { Clipboard, Check } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import "../App.css"
+import "../App.css";
+import { Link } from "react-router-dom";
 
-export default function CodeCard({codeSnippet}: any) {
+export default function CodeCard({ snippet }: any) {
   const [copied, setCopied] = useState(false);
 
-  
-
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(codeSnippet);
+    navigator.clipboard.writeText(snippet.code);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const lineCount = codeSnippet.split("\n").length;
-
   return (
-    <motion.div
-      className="max-w-md w-full bg-gray-900 dark:hover:shadow-xl dark: rounded-xl shadow-xl overflow-hidden"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="p-4">
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex space-x-1">
-            <div className="w-3 h-3 rounded-full bg-red-500" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500" />
-            <div className="w-3 h-3 rounded-full bg-green-500" />
-          </div>
-          <motion.button
-            className="text-gray-400 hover:text-white transition-colors"
-            onClick={copyToClipboard}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            {copied ? <Check size={20} /> : <Clipboard size={20} />}
-          </motion.button>
-        </div>
-        <SyntaxHighlighter
-          language="javascript"
-          style={atomDark}
-          class="example"
-          customStyle={{
-            margin: 0,
-            padding: "16px",
-            borderRadius: "0.5rem",
-            fontSize: "0.875rem",
-            cursor: "pointer"
-          }}
-        >
-          {codeSnippet}
-        </SyntaxHighlighter>
-      </div>
+    <>
       <motion.div
-        className="bg-gray-800 p-4 flex justify-between items-center"
+        key={snippet.id}
+        className="max-w-md w-full flex flex-col justify-between bg-gray-900 dark:hover:shadow-xl dark: rounded-xl shadow-xl overflow-hidden"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
+        transition={{ duration: 0.5 }}
       >
-        <span className="text-sm text-gray-400">Javascript</span>
-        <span className="text-sm text-gray-400">{lineCount}</span>
+        <div className="p-4">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex space-x-1">
+              <div className="w-3 h-3 rounded-full bg-red-500" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500" />
+              <div className="w-3 h-3 rounded-full bg-green-500" />
+            </div>
+            <motion.button
+              className="text-gray-400 hover:text-white transition-colors"
+              onClick={copyToClipboard}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              {copied ? <Check size={20} /> : <Clipboard size={20} />}
+            </motion.button>
+          </div>
+          <Link to={`/description/${snippet.id}`}>
+            <SyntaxHighlighter
+              language="javascript"
+              style={atomDark}
+              class="example"
+              customStyle={{
+                margin: 0,
+                padding: "16px",
+                borderRadius: "0.5rem",
+                fontSize: "0.875rem",
+                cursor: "pointer",
+                height: "100%",
+              }}
+            >
+              {snippet.code}
+            </SyntaxHighlighter>
+          </Link>
+        </div>
+        <motion.div
+          className="bg-gray-800  p-4 flex justify-between items-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
+          <span className="text-sm text-gray-400">
+            {snippet.programmingLanguage}
+          </span>
+          <span className="text-sm text-gray-400">
+            {snippet.code.split("\n").length}
+          </span>
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </>
   );
 }
