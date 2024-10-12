@@ -20,7 +20,7 @@ const ForgotPassword = () => {
     }
     setSendOtpLoading(true);
     try {
-        const res = await axios.put("/api/v1/verifyForgotPassword", {email});
+        const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/verifyForgotPassword`, {email});
         if(res.data.status === false){
             throw new Error(res.data.msg);
         }
@@ -43,7 +43,7 @@ const ForgotPassword = () => {
         email: email,
         otp: userOtp,
       };
-      const res = await axios.put("/api/v1/VerifyEmailAtForgotPassword", data);
+      const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/VerifyEmailAtForgotPassword`, data);
       if (res.data.status === false) {
         throw new Error(res.data.msg);
       }

@@ -22,7 +22,7 @@ const Otpverify = ({ signupData }: OtpverifyProps) => {
         email: signupData.email,
         otp: userOtp,
       };
-      const res = await axios.post("/api/v1/verifyUserAtSignup", data);
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/verifyUserAtSignup`, data);
       if (res.data.status === false) {
         throw new Error(res.data.msg);
       }

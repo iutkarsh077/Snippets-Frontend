@@ -36,7 +36,7 @@ export default function Signup() {
     setLoading(true);
     setSignupdata(data);
     try {
-      const savedUser = await axios.post("/api/v1/sign-up", data);
+      const savedUser = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/sign-up`, data);
       console.log(savedUser);
       setRenderOtpPage(true);
     } catch (error: any) {

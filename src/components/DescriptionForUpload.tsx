@@ -26,7 +26,7 @@ export default function DescriptionBox({
       if(!id){
         toast.error("Please login before saving your snippet");
       }
-      const res = await axios.post("/api/v1/saveSnippet", {question, language, code, id});
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/saveSnippet`, {question, language, code, id});
       console.log(res);
     } catch (error: any) {
       const errorMessage = error?.response?.data || "An unknown errror occured";

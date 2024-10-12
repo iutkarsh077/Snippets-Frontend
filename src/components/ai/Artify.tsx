@@ -22,7 +22,7 @@ const Artify = () => {
 
     setIsLoading(true);
     try {
-      const res = await axios.post("/api/v1/askfromai", { question: input });
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/askfromai`, { question: input });
       if (res.data.status === false) {
         throw new Error(res.data.msg);
       }

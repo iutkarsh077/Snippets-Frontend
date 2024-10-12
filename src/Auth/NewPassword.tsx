@@ -36,7 +36,7 @@ const NewPasswordComp = ({ email }: { email: string }) => {
             confirmPassword: data.confirmPassword,
             email: email
         }
-        const res = await axios.put("/api/v1/ChangePasswordAtLogin", userData);
+        const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/ChangePasswordAtLogin`, userData);
         if(res.data.status === false){
             throw new Error(res.data.msg)
         }

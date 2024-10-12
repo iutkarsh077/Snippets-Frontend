@@ -42,7 +42,7 @@ export default function OneSnippet() {
   useEffect(() => {
     const getUniquePost = async () => {
       try {
-        const res = await axios.get(`https://snippets-backend-1.onrender.com/api/v1/getSinglePost`, {
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/getSinglePost`, {
           params: { id },
         });
         if (res.data.status === false) {
@@ -79,7 +79,7 @@ export default function OneSnippet() {
     };
 
     try {
-      const res = await axios.post("/api/v1/saveComment", data);
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/saveComment`, data);
       if (res.data.status === false) {
         throw new Error(res.data.msg);
       }

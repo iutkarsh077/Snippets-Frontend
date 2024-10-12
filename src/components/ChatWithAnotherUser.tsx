@@ -28,7 +28,7 @@ export default function ChatWithAnotherUser() {
   useEffect(() => {
     const getAllChat = async () => {
       try {
-        const res = await axios.post("/api/v1/getChat", {
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/getChat`, {
           senderId: GlobalUserDetails.id,
           receiverId: ReceiverId,
         });
@@ -71,7 +71,7 @@ export default function ChatWithAnotherUser() {
         senderId: GlobalUserDetails.id,
         receiverId: ReceiverId,
       };
-      const res = await axios.post("/api/v1/saveChat", data);
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/saveChat`, data);
       if (res.data.status === false) {
         throw new Error(res.data.msg);
       }

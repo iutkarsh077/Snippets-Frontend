@@ -9,20 +9,22 @@ import { userContext } from "./GlobalUserProvider";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [userDetails, setUserDetails] = useState<any>(null);
-  const {setGlobalUserDetails} = useContext<any>(userContext);
+  const { setGlobalUserDetails } = useContext<any>(userContext);
   const location = useLocation();
 
-  useEffect(()=>{
-    const getUserDetails = async () =>{
-      const res = await axios.get("/api/v1/userInfo");
-      if(res.data.status === true){
+  useEffect(() => {
+    const getUserDetails = async () => {
+      const res = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/userInfo`
+      );
+      console.log(res.data);
+      if (res.data.status === true) {
         setUserDetails(res.data.data);
         setGlobalUserDetails(res.data.data);
       }
-    }
+    };
     getUserDetails();
-  }, [location.pathname])
-
+  }, [location.pathname]);
 
   const navLinks = [
     { name: "Dashboard", href: "/" },
@@ -90,9 +92,18 @@ export default function Navbar() {
               <IoCloudUpload className="text-2xl font-semibold" />
             </Link>
             <SwitchToggle />
-                {
-                  userDetails ? (<Link to={`/profile`} className="font-semibold"><div>{userDetails.name}</div></Link>) : ( <NavLink to={'/login'} className="bg-black pt-2 pb-2 pl-4 pr-4 hover:bg-gray-800 dark:bg-gray-200 dark:text-black dark:hover:bg-gray-400 hover:ease-in-out hover:transition-all hover:duration-300 font-semibold text-white rounded-md">Login</NavLink>)
-                }
+            {userDetails ? (
+              <Link to={`/profile`} className="font-semibold">
+                <div>{userDetails.name}</div>
+              </Link>
+            ) : (
+              <NavLink
+                to={"/login"}
+                className="bg-black pt-2 pb-2 pl-4 pr-4 hover:bg-gray-800 dark:bg-gray-200 dark:text-black dark:hover:bg-gray-400 hover:ease-in-out hover:transition-all hover:duration-300 font-semibold text-white rounded-md"
+              >
+                Login
+              </NavLink>
+            )}
           </div>
 
           {/* Mobile Menu Button */}

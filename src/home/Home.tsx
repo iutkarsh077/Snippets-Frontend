@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const getAllSnippets = async () => {
       setLoading(true);
-      const res = await axios.get("/api/v1/getAllSnippets");
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/getAllSnippets`);
       if (res && res.data) {
         setSnippets(res.data.data);
         // console.log(res);
