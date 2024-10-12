@@ -27,8 +27,8 @@ export default function Navbar() {
   const navLinks = [
     { name: "Dashboard", href: "/" },
     { name: "Snippets", href: "/snippets" },
-    { name: "DevChat", href: "/chat" },
-    { name: "ArtifyAI", href: "/artify" },
+    { name: "DevChat", href: "/userChat" },
+    { name: "ArtifyAI", href: "/askAi" },
   ];
 
   const containerVariants = {
@@ -91,7 +91,7 @@ export default function Navbar() {
             </NavLink>
             <SwitchToggle />
                 {
-                  userDetails ? (<div>{userDetails.name}</div>) : ( <NavLink to={'/login'} className="bg-black pt-2 pb-2 pl-4 pr-4 hover:bg-gray-800 dark:bg-gray-200 dark:text-black dark:hover:bg-gray-400 hover:ease-in-out hover:transition-all hover:duration-300 font-semibold text-white rounded-md">Login</NavLink>)
+                  userDetails ? (<Link to={`/profile`} className="font-semibold"><div>{userDetails.name}</div></Link>) : ( <NavLink to={'/login'} className="bg-black pt-2 pb-2 pl-4 pr-4 hover:bg-gray-800 dark:bg-gray-200 dark:text-black dark:hover:bg-gray-400 hover:ease-in-out hover:transition-all hover:duration-300 font-semibold text-white rounded-md">Login</NavLink>)
                 }
           </div>
 

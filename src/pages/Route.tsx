@@ -6,6 +6,9 @@ import Navbar from "../components/Navbar";
 import MainSnippets from "./snippets/MainSnippets";
 import UploadSnippets from "./UploadSnippets";
 import OneSnippet from "./SingleSnippet/OneSnippet";
+import ChatWithAnotherUser from "../components/ChatWithAnotherUser";
+import Artify from "../components/ai/Artify";
+import Profile from "../components/Profile";
 const RouterPath = () => {
   return (
     <Router>
@@ -17,6 +20,9 @@ const RouterPath = () => {
         <Route path="/snippets" element={<MainSnippets />} />
         <Route path="/uploadSnippets" element={<UploadSnippets />} />
         <Route path="/description/:id" element={<OneSnippet />} />
+        <Route path="/userChat/:userId" element={<ChatWithAnotherUser />} />
+        <Route path="/askAi" element={<Artify />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Clipboard, Check, Send } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -105,6 +105,29 @@ export default function OneSnippet() {
             transition={{ duration: 0.5 }}
           >
             <div className="p-6">
+              <div className="h-10 w-full mb-6 flex justify-around">
+                <div className="h-10 w-full flex items-center">
+                  <span className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                    {singlePost.author.name.charAt(0).toUpperCase()}
+                  </span>
+                  <span className="font-semibold">
+                    {singlePost.author.name}
+                  </span>
+                </div>
+                {GlobalUserDetails &&
+                  GlobalUserDetails.id != singlePost.authorId && (
+                    <Link to={`/userChat/${singlePost.authorId}`}>
+                      <div>
+                        <button
+                          type="submit"
+                          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        >
+                          Chat
+                        </button>
+                      </div>
+                    </Link>
+                  )}
+              </div>
               <div className="flex items-center justify-between mb-4">
                 <div className="flex space-x-2">
                   <div className="w-3 h-3 rounded-full bg-red-500" />

@@ -22,7 +22,7 @@ export default function CodeCard({ snippet }: any) {
         className="max-w-md w-full flex flex-col justify-between bg-gray-900 dark:hover:shadow-xl dark: rounded-xl shadow-xl overflow-hidden"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.9 }}
       >
         <div className="p-4">
           <div className="flex items-center justify-between mb-2">
@@ -42,7 +42,7 @@ export default function CodeCard({ snippet }: any) {
           </div>
           <Link to={`/description/${snippet.id}`}>
             <SyntaxHighlighter
-              language="javascript"
+              language={snippet.programmingLanguage}
               style={atomDark}
               class="example"
               customStyle={{
