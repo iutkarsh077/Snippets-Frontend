@@ -11,6 +11,7 @@ import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
 import { userContext } from "../../components/GlobalUserProvider";
 import { Loader2 } from "lucide-react";
+import.meta.env.BACKEND_URL
 
 interface Author {
   name: string;
@@ -41,7 +42,7 @@ export default function OneSnippet() {
   useEffect(() => {
     const getUniquePost = async () => {
       try {
-        const res = await axios.get(`/api/v1/getSinglePost`, {
+        const res = await axios.get(`https://snippets-backend-1.onrender.com/api/v1/getSinglePost`, {
           params: { id },
         });
         if (res.data.status === false) {
