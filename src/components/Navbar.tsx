@@ -17,6 +17,7 @@ export default function Navbar() {
       const res = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/userInfo`
       );
+      console.log(import.meta.env.VITE_BACKEND_URL)
       console.log(res.data);
       if (res.data.status === true) {
         setUserDetails(res.data.data);
