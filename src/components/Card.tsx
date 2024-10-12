@@ -19,7 +19,7 @@ export default function CodeCard({ snippet }: any) {
     <>
       <motion.div
         key={snippet.id}
-        className="max-w-md w-full flex flex-col justify-between bg-gray-900 dark:hover:shadow-xl dark: rounded-xl shadow-xl overflow-hidden"
+        className="max-w-md w-full min-h-full flex flex-col justify-between bg-gray-900 dark:hover:shadow-xl dark: rounded-xl shadow-xl overflow-hidden"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9 }}

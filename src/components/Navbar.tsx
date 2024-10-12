@@ -51,7 +51,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="shadow-lg z-50"
+      className="z-50"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -68,12 +68,12 @@ export default function Navbar() {
             {navLinks.map((link, index) => (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.1, color: "#ffffff" }}
+                whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
                   to={link.href}
-                  className=" text-lg font-medium hover:text-indigo-200 transition-colors duration-200 dark:text-white"
+                  className=" text-lg font-medium duration-200"
                 >
                   {link.name}
                 </Link>
@@ -81,14 +81,14 @@ export default function Navbar() {
             ))}
           </div>
           <div className="flex items-center gap-x-5">
-            <NavLink
+            <Link
               to="/uploadSnippets"
               className={`${
                 location.pathname === "/snippets" ? "block" : "hidden"
               }`}
             >
               <IoCloudUpload className="text-2xl font-semibold" />
-            </NavLink>
+            </Link>
             <SwitchToggle />
                 {
                   userDetails ? (<Link to={`/profile`} className="font-semibold"><div>{userDetails.name}</div></Link>) : ( <NavLink to={'/login'} className="bg-black pt-2 pb-2 pl-4 pr-4 hover:bg-gray-800 dark:bg-gray-200 dark:text-black dark:hover:bg-gray-400 hover:ease-in-out hover:transition-all hover:duration-300 font-semibold text-white rounded-md">Login</NavLink>)

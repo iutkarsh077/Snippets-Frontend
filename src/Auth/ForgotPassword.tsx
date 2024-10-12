@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { signupTypes } from "../types/Signup";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Loader2 } from "lucide-react";
-import Login from "./Login";
 import NewPasswordComp from "./NewPassword";
 
 const ForgotPassword = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [userOtp, setOtp] = useState<string>("");
   const [loading, setLoading] = useState(false);

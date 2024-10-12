@@ -1,8 +1,6 @@
 import { useState } from "react";
 import CodeCard from "../components/CodeInput";
 import SearchLanguage from "../components/Searchlanguage";
-import { motion } from 'framer-motion'
-import { Send } from 'lucide-react'
 
 import DescriptionBox from "../components/DescriptionForUpload";
 
@@ -13,6 +11,8 @@ const UploadSnippets = () => {
     const [showCodeCard, setShowCodeCard] = useState(true);
     const [showSearchLanguage, setShowSearchLanguage] = useState(false);
     const [showDescriptionBox, setshowDescriptionBox] = useState(false);
+
+    console.log(description)
   return (
     <div className="flex flex-col items-center w-full mt-10">
         <div className={`${showCodeCard === true ? "block" : "hidden"} w-full flex justify-center`}><CodeCard code={code} setCode={setCode} setShowCodeCard={setShowCodeCard} setShowSearchLanguage={setShowSearchLanguage}/></div>

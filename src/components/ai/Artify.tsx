@@ -26,7 +26,7 @@ const Artify = () => {
       if (res.data.status === false) {
         throw new Error(res.data.msg);
       }
-      const cleanedText = res.data.result.replace(/\*\*/g, "");
+      const cleanedText = res.data.result.replace(/(\*\*|\*|```|`|``)/g, "");
       setResponseFromGemini((prev) => [
         ...prev,
         { question: input, answer: cleanedText },

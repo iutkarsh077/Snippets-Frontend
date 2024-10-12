@@ -63,7 +63,7 @@ export default function Login() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md"
       >
-        <div className="bg-white dark:bg-gray-900 shadow-2xl rounded-lg px-8 py-6 space-y-4 dark:shadow-gray-700">
+        <div className="shadow-2xl rounded-lg px-8 py-6 space-y-4 dark:shadow-gray-700">
           <h2 className="text-2xl font-bold text-center">Login</h2>
           <p className="text-center ">
             Enter your credentials to access your account

@@ -6,10 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { userContext } from "./GlobalUserProvider";
 
-interface SenderInfoType {
-  id: string,
-  name: string,
-}
+
 
 interface ChatListType {
   id: string,
@@ -26,7 +23,6 @@ export default function ChatWithAnotherUser() {
   const { GlobalUserDetails } = useContext<any>(userContext);
   const ReceiverId = params.userId as string;
   const [message, setMessage] = useState("");
-  const [sendMsgLoading, setSendMsgLoading] = useState(false);
   const [chatList, setChatList] = useState<ChatListType[] | null>(null);
 
   useEffect(() => {
