@@ -15,9 +15,10 @@ export default function Navbar() {
   useEffect(() => {
     const getUserDetails = async () => {
       const res = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/v1/userInfo`
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/userInfo`, {
+          withCredentials: true
+        }
       );
-      console.log(import.meta.env.VITE_BACKEND_URL)
       console.log(res.data);
       if (res.data.status === true) {
         setUserDetails(res.data.data);
