@@ -32,7 +32,7 @@ export default function Login() {
   const handleLogin = async (data: LoginTypes) => {
     setLoading(true);
     try {
-      const res = await axios.post(`/api/v1/LoginUser`, data);
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/LoginUser`, data);
       if (res.data.status === false) {
         throw new Error(res.data.msg);
       }
